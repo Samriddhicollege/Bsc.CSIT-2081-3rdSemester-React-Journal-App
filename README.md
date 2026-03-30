@@ -6,7 +6,7 @@ A clean and modern **Journal Web Application** built with React that allows user
 
 ## 🌐 Live Demo
 
-*(Add your deployed link here if available)*
+[https://pheluayush.web.app/](https://pheluayush.web.app/)
 
 ---
 
