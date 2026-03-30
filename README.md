@@ -1,16 +1,128 @@
-# React + Vite
+# 📝 Journal Web App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A clean and modern **Journal Web Application** built with React that allows users to write, edit, and manage daily journal entries. This app works like a personal diary with data saved locally in the browser.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🌐 Live Demo
 
-## React Compiler
+*(Add your deployed link here if available)*
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🚀 Features
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+* ✍️ Create new journal entries (title + content + date)
+* 📖 View all journal entries in a list
+* ✏️ Edit existing entries
+* 🗑️ Delete entries
+* 💾 Data persistence using Local Storage
+* 🔄 Real-time UI updates using React state
+* ⚡ Clean and responsive interface
+
+---
+
+## 🛠️ Technologies Used
+
+* **React** (Functional Components + Hooks)
+* **Vite** (Fast build tool)
+* **JavaScript (ES6+)**
+* **CSS / Tailwind** (for styling)
+
+### React Concepts Used:
+
+* `useState` – for managing form and journal data
+* `useEffect` – for syncing with localStorage
+* Props – for parent-child communication
+* Component-based architecture
+
+---
+
+## 📁 Folder Structure
+
+```
+src/
+├── components/
+│   ├── JournalForm.jsx
+│   ├── JournalList.jsx
+│   ├── JournalItem.jsx
+├── App.jsx
+├── main.jsx
+└── index.css
+```
+
+---
+
+## 🏁 Getting Started
+
+### Prerequisites
+
+* Node.js
+* npm
+
+### Installation
+
+1. Clone the repository:
+
+```
+git clone <your-repo-link>
+```
+
+2. Navigate to the project folder:
+
+```
+cd journal-app
+```
+
+3. Install dependencies:
+
+```
+npm install
+```
+
+4. Run the development server:
+
+```
+npm run dev
+```
+
+5. Open in browser:
+
+```
+http://localhost:5173
+```
+
+---
+
+## 🎮 How to Use
+
+1. Add a new journal entry using the form
+2. View all entries in the list
+3. Edit or delete any entry
+4. Entries are automatically saved in your browser
+
+---
+
+## 📦 Features Implemented (Project Criteria)
+
+* Component Architecture (App → Container → Components)
+* State Management using `useState`
+* Event Handling (`onClick`, `onChange`)
+* Props usage (data + functions)
+* List Rendering with keys
+* LocalStorage integration
+* useEffect for side effects
+* CRUD Operations (Create, Read, Update, Delete)
+* Conditional Rendering
+* Input Validation
+* Clean UI design
+
+---
+
+## 📜 License
+
+This project was developed as a **B.Sc. CSIT React coursework project**.
+
+---
+
+⭐ *Build it like a real product, not just an assignment.*
