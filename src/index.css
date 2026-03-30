@@ -1,0 +1,859 @@
+/* ============================================================
+   MyJournal — Global Stylesheet
+   Design System: Tokens → Base → Layout → Components → Utilities
+   ============================================================ */
+
+/* ── Google Fonts ── */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,500&display=swap");
+
+/* ============================================================
+   1. CSS DESIGN TOKENS (Custom Properties)
+   ============================================================ */
+
+/* Dark Theme (default) */
+.theme--dark {
+  --bg-base: #0f1117;
+  --bg-surface: #1a1d27;
+  --bg-card: #21253a;
+  --bg-input: #1e2235;
+  --bg-hover: #272b40;
+
+  --accent-primary: #7c6ef2;
+  --accent-primary-hover: #9183f5;
+  --accent-danger: #e05471;
+  --accent-danger-hover: #f06b88;
+  --accent-ghost: transparent;
+
+  --text-primary: #e8eaf6;
+  --text-secondary: #9ba3c9;
+  --text-muted: #5a6285;
+  --text-on-accent: #ffffff;
+
+  --border-color: #2e334d;
+  --border-focus: #7c6ef2;
+
+  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.4);
+  --shadow-focus: 0 0 0 3px rgba(124, 110, 242, 0.25);
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-full: 999px;
+
+  --badge-editing-bg: rgba(124, 110, 242, 0.15);
+  --badge-editing-color: #a394ff;
+
+  --gradient-header: linear-gradient(135deg, #1a1d27 0%, #0f1117 100%);
+  --gradient-brand: linear-gradient(90deg, #7c6ef2, #a78bfa);
+}
+
+/* Light Theme */
+.theme--light {
+  --bg-base: #f4f5fb;
+  --bg-surface: #ffffff;
+  --bg-card: #ffffff;
+  --bg-input: #f0f1f8;
+  --bg-hover: #ededf7;
+
+  --accent-primary: #6558e8;
+  --accent-primary-hover: #7c6ef2;
+  --accent-danger: #d94063;
+  --accent-danger-hover: #e05471;
+  --accent-ghost: transparent;
+
+  --text-primary: #1c1f33;
+  --text-secondary: #4a5080;
+  --text-muted: #9ba3c9;
+  --text-on-accent: #ffffff;
+
+  --border-color: #dde0f0;
+  --border-focus: #6558e8;
+
+  --shadow-card: 0 2px 16px rgba(101, 88, 232, 0.08);
+  --shadow-focus: 0 0 0 3px rgba(101, 88, 232, 0.2);
+
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 18px;
+  --radius-full: 999px;
+
+  --badge-editing-bg: rgba(101, 88, 232, 0.1);
+  --badge-editing-color: #6558e8;
+
+  --gradient-header: linear-gradient(135deg, #ffffff 0%, #f4f5fb 100%);
+  --gradient-brand: linear-gradient(90deg, #6558e8, #8b7cf8);
+}
+
+/* ============================================================
+   2. BASE RESET & GLOBAL STYLES
+   ============================================================ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── App Root Shell ── */
+.app {
+  min-height: 100vh;
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ============================================================
+   3. HEADER
+   ============================================================ */
+
+.app-header {
+  background: var(--gradient-header);
+  border-bottom: 1px solid var(--border-color);
+  padding: 0 2rem;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.header-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.header-logo-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  background: linear-gradient(135deg, rgba(124,110,242,0.18), rgba(167,139,250,0.1));
+  border: 1px solid rgba(124, 110, 242, 0.25);
+  border-radius: var(--radius-md);
+  flex-shrink: 0;
+}
+
+.header-logo-icon {
+  color: var(--accent-primary);
+  filter: drop-shadow(0 2px 6px rgba(124, 110, 242, 0.5));
+}
+
+.header-feather-icon {
+  position: absolute;
+  bottom: 6px;
+  right: 5px;
+  color: var(--accent-primary-hover);
+  opacity: 0.85;
+}
+
+.header-title {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  background: var(--gradient-brand);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.2;
+}
+
+.header-tagline {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.header-stats {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+}
+
+/* ============================================================
+   4. MAIN LAYOUT CONTAINER
+   ============================================================ */
+
+.journal-container {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+  flex: 1;
+}
+
+.container-sidebar {
+  position: sticky;
+  top: 88px; /* header height + gap */
+  align-self: start;
+}
+
+.container-main {
+  min-width: 0;
+}
+
+/* ============================================================
+   5. JOURNAL FORM
+   ============================================================ */
+
+.journal-form-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+  box-shadow: var(--shadow-card);
+  transition: border-color 0.2s ease;
+}
+
+.form-heading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.form-heading-icon {
+  color: var(--accent-primary);
+  flex-shrink: 0;
+}
+
+.journal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  position: relative;
+}
+
+.form-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.form-input,
+.form-textarea {
+  width: 100%;
+  background: var(--bg-input);
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-family: "Inter", sans-serif;
+  font-size: 0.95rem;
+  padding: 0.65rem 0.85rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  outline: none;
+}
+
+.form-input:focus,
+.form-textarea:focus {
+  border-color: var(--border-focus);
+  box-shadow: var(--shadow-focus);
+}
+
+.form-input::placeholder,
+.form-textarea::placeholder {
+  color: var(--text-muted);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 130px;
+  line-height: 1.7;
+}
+
+/* Date input color fix */
+input[type="date"] {
+  color-scheme: dark;
+}
+.theme--light input[type="date"] {
+  color-scheme: light;
+}
+
+.char-count {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  text-align: right;
+  margin-top: 2px;
+}
+
+.form-error {
+  font-size: 0.85rem;
+  color: var(--accent-danger);
+  background: rgba(224, 84, 113, 0.1);
+  border: 1px solid rgba(224, 84, 113, 0.25);
+  border-radius: var(--radius-sm);
+  padding: 0.5rem 0.75rem;
+  animation: shake 0.35s ease;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-6px); }
+  75% { transform: translateX(6px); }
+}
+
+.form-actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+/* ============================================================
+   6. REUSABLE BUTTON COMPONENT
+   ============================================================ */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background 0.18s ease, transform 0.15s ease, opacity 0.15s ease, box-shadow 0.18s ease;
+  white-space: nowrap;
+  text-decoration: none;
+}
+
+.btn:active:not(:disabled) {
+  transform: scale(0.96);
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* Sizes */
+.btn--sm { font-size: 0.78rem; padding: 5px 10px; }
+.btn--md { font-size: 0.9rem;  padding: 9px 18px; }
+.btn--lg { font-size: 1rem;    padding: 12px 24px; }
+
+/* Variants */
+.btn--primary {
+  background: var(--accent-primary);
+  color: var(--text-on-accent);
+  box-shadow: 0 2px 10px rgba(124, 110, 242, 0.3);
+}
+.btn--primary:hover:not(:disabled) {
+  background: var(--accent-primary-hover);
+  box-shadow: 0 4px 16px rgba(124, 110, 242, 0.45);
+  transform: translateY(-1px);
+}
+
+.btn--danger {
+  background: rgba(224, 84, 113, 0.12);
+  color: var(--accent-danger);
+  border: 1px solid rgba(224, 84, 113, 0.25);
+}
+.btn--danger:hover:not(:disabled) {
+  background: var(--accent-danger);
+  color: white;
+  border-color: var(--accent-danger);
+}
+
+.btn--ghost {
+  background: var(--bg-hover);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+}
+.btn--ghost:hover:not(:disabled) {
+  background: var(--bg-surface);
+  color: var(--text-primary);
+  border-color: var(--accent-primary);
+}
+
+.btn--secondary {
+  background: var(--bg-surface);
+  color: var(--accent-primary);
+  border: 1.5px solid var(--accent-primary);
+}
+.btn--secondary:hover:not(:disabled) {
+  background: var(--accent-primary);
+  color: white;
+}
+
+/* ============================================================
+   7. JOURNAL LIST SECTION
+   ============================================================ */
+
+.journal-list-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+/* ── Search & Filter Bar ── */
+.search-filter-bar {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* Icon-wrapped search input */
+.search-input-wrap {
+  flex: 1;
+  min-width: 200px;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-icon {
+  position: absolute;
+  left: 10px;
+  color: var(--text-muted);
+  pointer-events: none;
+  flex-shrink: 0;
+}
+
+.search-input {
+  width: 100%;
+  background: var(--bg-surface);
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-family: "Inter", sans-serif;
+  font-size: 0.9rem;
+  padding: 0.6rem 0.85rem 0.6rem 2.1rem;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.search-input:focus {
+  border-color: var(--border-focus);
+  box-shadow: var(--shadow-focus);
+}
+
+.search-input::placeholder {
+  color: var(--text-muted);
+}
+
+/* Icon-wrapped date filter */
+.filter-date-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.filter-icon {
+  position: absolute;
+  left: 10px;
+  color: var(--text-muted);
+  pointer-events: none;
+  flex-shrink: 0;
+}
+
+.filter-date {
+  background: var(--bg-surface);
+  border: 1.5px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-family: "Inter", sans-serif;
+  font-size: 0.9rem;
+  padding: 0.6rem 0.85rem 0.6rem 2.1rem;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+}
+
+.filter-date:focus {
+  border-color: var(--border-focus);
+  box-shadow: var(--shadow-focus);
+}
+
+.clear-filters-btn {
+  background: none;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-full);
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  padding: 5px 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.clear-filters-btn:hover {
+  color: var(--accent-danger);
+  border-color: var(--accent-danger);
+}
+
+/* ── List Header ── */
+.list-header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.list-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.list-title-icon {
+  color: var(--accent-primary);
+}
+
+.entry-count {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  background: var(--bg-surface);
+  border: 1px solid var(--border-color);
+  padding: 3px 10px;
+  border-radius: var(--radius-full);
+}
+
+/* ── Journal Cards Grid ── */
+.journal-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.25rem;
+}
+
+/* ============================================================
+   8. JOURNAL CARD (JournalItem)
+   ============================================================ */
+
+.journal-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1.35rem;
+  box-shadow: var(--shadow-card);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  position: relative;
+  animation: fadeInUp 0.3s ease both;
+}
+
+.journal-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  border-color: var(--accent-primary);
+}
+
+.journal-card--editing {
+  border-color: var(--accent-primary) !important;
+  box-shadow: 0 0 0 2px rgba(124, 110, 242, 0.2), var(--shadow-card) !important;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.journal-card__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.journal-card__meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.meta-icon {
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.journal-card__date {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.journal-card__updated {
+  font-size: 0.68rem;
+  color: var(--accent-primary);
+  font-style: italic;
+}
+
+.journal-card__actions {
+  display: flex;
+  gap: 6px;
+  flex-shrink: 0;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.journal-card:hover .journal-card__actions {
+  opacity: 1;
+}
+
+.journal-card__title {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.35;
+  word-break: break-word;
+}
+
+.journal-card__content {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  word-break: break-word;
+  flex: 1;
+}
+
+.journal-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--border-color);
+  margin-top: auto;
+}
+
+.journal-card__wordcount {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+
+.journal-card__toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: none;
+  border: none;
+  color: var(--accent-primary);
+  font-size: 0.78rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 2px 0;
+  transition: color 0.15s;
+  font-family: "Inter", sans-serif;
+}
+
+.journal-card__toggle:hover {
+  color: var(--accent-primary-hover);
+}
+
+.journal-card__editing-badge {
+  position: absolute;
+  top: -10px;
+  left: 16px;
+  background: var(--badge-editing-bg);
+  color: var(--badge-editing-color);
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 2px 10px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--accent-primary);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* ============================================================
+   9. EMPTY STATE
+   ============================================================ */
+
+.empty-state {
+  text-align: center;
+  padding: 4rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  animation: fadeInUp 0.4s ease;
+}
+
+.empty-state__icon-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 88px;
+  height: 88px;
+  background: linear-gradient(135deg, rgba(124,110,242,0.08), rgba(167,139,250,0.05));
+  border: 1px solid rgba(124, 110, 242, 0.15);
+  border-radius: 50%;
+  animation: float 3s ease-in-out infinite;
+}
+
+.empty-state__icon {
+  color: var(--text-muted);
+  opacity: 0.6;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-8px); }
+}
+
+.empty-state__heading {
+  font-family: "Playfair Display", Georgia, serif;
+  font-size: 1.4rem;
+  color: var(--text-primary);
+}
+
+.empty-state__sub {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  max-width: 320px;
+}
+
+/* ============================================================
+   10. FOOTER
+   ============================================================ */
+
+.app-footer {
+  text-align: center;
+  padding: 1.5rem 2rem;
+  border-top: 1px solid var(--border-color);
+  color: var(--text-muted);
+  font-size: 0.78rem;
+  margin-top: auto;
+}
+
+/* ============================================================
+   11. SCROLLBAR STYLING
+   ============================================================ */
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-base);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* ============================================================
+   12. RESPONSIVE — Tablet & Mobile
+   ============================================================ */
+
+@media (max-width: 900px) {
+  .journal-container {
+    grid-template-columns: 1fr;
+    padding: 1.25rem;
+    gap: 1.5rem;
+  }
+
+  .container-sidebar {
+    position: static;
+  }
+
+  .journal-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .app-header {
+    padding: 0 1rem;
+    height: 60px;
+  }
+
+  .header-title {
+    font-size: 1.2rem;
+  }
+
+  .header-tagline {
+    display: none;
+  }
+
+  .header-stats {
+    display: none;
+  }
+
+  .journal-container {
+    padding: 1rem;
+  }
+
+  .journal-form-card {
+    padding: 1.25rem;
+  }
+
+  .search-filter-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filter-date {
+    width: 100%;
+  }
+}
+
+/* ============================================================
+   13. SELECTION COLOR
+   ============================================================ */
+
+::selection {
+  background: rgba(124, 110, 242, 0.3);
+  color: var(--text-primary);
+}
